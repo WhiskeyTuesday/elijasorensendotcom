@@ -1,10 +1,8 @@
-$heading:#508991;
-$text:#5e6472;
-$background:#fcd0a1;
-$link:$heading;
-$hover:#74b3ce;
+@import "colours";
+@import "clean";
 
 body{
+  margin:2rem;
   font-family: sans-serif;
   background-color:$background;
   color:$text;
@@ -21,4 +19,9 @@ a{
 }
 a:hover{
   color:$hover;
+}
+
+#things{
+  margin-top:0.5rem;
+  margin-left:2rem;
 }
