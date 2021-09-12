@@ -1,21 +1,21 @@
 {
-  "title": "Your Blog Name",
-  "url": "https://example.com/",
-  "language": "en",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "title": "Elija Sorensen dot com",
+  "url": "https://elijasorensen.com/",
+  "language": "en-ca",
+  "description": "a reasonably self-explanatory website",
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "Thoughts from inside the mouth of the giant turtle",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://example.com/"
+    "id": "https://elijasorensen.com/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://example.com/feed/feed.json"
+    "url": "https://elijasorensen.com/feed/feed.json"
   },
   "author": {
-    "name": "Your Name Here",
-    "email": "youremailaddress@example.com",
-    "url": "https://example.com/about-me/"
+    "name": "Elija Sorensen",
+    "email": "elija@elijasorensen.com",
+    "url": "https://elijasorensen.com"
   }
 }
