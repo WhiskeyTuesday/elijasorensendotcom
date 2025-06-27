@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect x="0" y="0" width="64" height="64" rx="8" ry="8" fill="#fdf2e9" stroke="#3e2f24" stroke-width="2"></rect>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-family="Courier, monospace" font-size="28" fill="#3e2f24">
+    ES
+  </text>
+</svg>
