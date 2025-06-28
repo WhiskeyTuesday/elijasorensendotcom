@@ -11,7 +11,6 @@
   let currentTime = $state(new Date().toLocaleString());
   let isMinimized = $state(false);
 
-  // Update time every minute for that authentic system feel
   setInterval(() => {
     currentTime = new Date().toLocaleString();
   }, 60000);
@@ -75,8 +74,8 @@
       handle: "hello@elijasorensen.com",
       description: "the old reliable",
       icon: Mail,
-      color: "bg-slate-400",
-      borderColor: "border-slate-600",
+      color: "bg-stone-400",
+      borderColor: "border-stone-600",
       link: "mailto:hello@elijasorensen.com",
     }
   ];
@@ -108,7 +107,7 @@
       subtitle: "might fuck around and change building construction forever idk",
       icon: Wrench,
       status: "patent pending",
-      link: "https://thermatrut.com",
+      link: "https://thermastrut.com",
     },
     {
       title: "The Lifestyle Computer Company",
@@ -250,26 +249,28 @@
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {#each currentProjects as project}
-              <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors">
-                <!-- Mini title bar -->
-                <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
-                  <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 {project.color} border {project.borderColor}"></div>
-                    <span class="text-xs text-stone-600">{project.status}</span>
-                  </div>
-                  {#if project.link !== '#'}
-                    <ExternalLink size={12} class="text-stone-500" />
-                  {/if}
+                <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors">
+                  <a href={project.link}>
+                    <!-- Mini title bar -->
+                    <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 {project.color} border {project.borderColor}"></div>
+                        <span class="text-xs text-stone-600">{project.status}</span>
+                      </div>
+                      {#if project.link !== '#'}
+                        <ExternalLink size={12} class="text-stone-500" />
+                      {/if}
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <project.icon size={20} class="text-stone-600 mt-1 flex-shrink-0" />
+                      <div>
+                        <h3 class="font-bold text-stone-800">{project.title}</h3>
+                        <p class="text-sm text-stone-600 mb-1">{project.description}</p>
+                        <p class="text-xs text-stone-500 italic">{project.subtitle}</p>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-                <div class="flex items-start space-x-3">
-                  <project.icon size={20} class="text-stone-600 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 class="font-bold text-stone-800">{project.title}</h3>
-                    <p class="text-sm text-stone-600 mb-1">{project.description}</p>
-                    <p class="text-xs text-stone-500 italic">{project.subtitle}</p>
-                  </div>
-                </div>
-              </div>
             {/each}
           </div>
         </section>
