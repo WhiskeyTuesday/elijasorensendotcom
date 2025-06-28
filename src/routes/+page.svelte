@@ -172,7 +172,7 @@
 
   const miscItems = [
     "Where should I put photos I take? I used to use instagram, flickr, 500px, they all suck",
-    "I'm a big flightsim nerd, I don't think I have any links relevant though",
+    "I'm a pretty big airplane and flightsim nerd, I don't think I have any links relevant though",
     "I have a lot of vintage computers in various states of repair",
     "I have a lot of electronics projects in various states of completion",
     "I'm sure I'm forgetting some other things that should be on here",
