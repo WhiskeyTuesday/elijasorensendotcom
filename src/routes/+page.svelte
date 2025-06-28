@@ -4,6 +4,7 @@
     Code, Users, Wrench, Sticker,
     Youtube, Github, Mail, Building2,
     VenetianMask, Bike, Twitter, Linkedin,
+    Tickets, Beef,
   } from 'lucide-svelte';
 
   import { onMount } from 'svelte';
@@ -102,6 +103,14 @@
       link: "https://officehours.lol",
     },
     {
+      title: "name TBD",
+      description: "compliance/adherence thing for weight loss",
+      subtitle: "people and apps are both too bloated",
+      icon: Beef,
+      status: "early development",
+      link: "#",
+    },
+    {
       title: "Thermastrut",
       description: "construction technology",
       subtitle: "might fuck around and change building construction forever idk",
@@ -114,7 +123,7 @@
       description: "co-founder and technologist",
       subtitle: "a totally real company™",
       icon: Building2,
-      status: "consulting",
+      status: "available on request",
       color: "bg-pink-400",
       borderColor: "border-pink-600",
       link: "https://lcc.solutions",
@@ -142,7 +151,15 @@
       subtitle: "aren't you tired of online dating?",
       icon: Users,
       status: "ran out of patience",
-      link: "#"
+      link: "#",
+    },
+    {
+      title: "Debittab",
+      description: "Gift vouchers and incentives for local business",
+      subtitle: "Every startup person needs a failed dating app and a failed local business app",
+      icon: Tickets,
+      status: "still a good idea",
+      link: "#",
     },
     {
       title: "Stickers and Shirts",
@@ -250,7 +267,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {#each currentProjects as project}
                 <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors">
-                  <a href={project.link}>
+                  <a href={project.link !== '#' ? project.link : undefined} target="_blank" rel="noopener noreferrer" class="block">
                     <!-- Mini title bar -->
                     <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
                       <div class="flex items-center space-x-2">
