@@ -4,8 +4,10 @@
     Code, Users, Wrench, Sticker,
     Youtube, Github, Mail, Building2,
     VenetianMask, Bike, Twitter, Linkedin,
-    Tickets, Beef,
+    Tickets, Beef, Sparkles, Headphones,
   } from 'lucide-svelte';
+
+  import J17Icon from '$lib/icons/J17Icon.svelte';
 
   import { onMount } from 'svelte';
 
@@ -95,6 +97,16 @@
 
   const currentProjects = [
     {
+      title: "17Jewels",
+      description: "managed eventsourcing service",
+      subtitle: "your system should never forget",
+      icon: J17Icon,
+      status: "pre-alpha",
+      color: "bg-red-800",
+      borderColor: "border-red-900",
+      link: "#",
+    },
+    {
       title: "office hours dot lol",
       description: "illegible tpot meetup directory",
       subtitle: "entirely official and totally legitimate",
@@ -103,7 +115,7 @@
       link: "https://officehours.lol",
     },
     {
-      title: "name TBD",
+      title: "Tickbox",
       description: "compliance/adherence thing for weight loss",
       subtitle: "people and apps are both too bloated",
       icon: Beef,
@@ -111,12 +123,20 @@
       link: "#",
     },
     {
-      title: "Thermastrut",
-      description: "construction technology",
-      subtitle: "might fuck around and change building construction forever idk",
-      icon: Wrench,
-      status: "patent pending",
-      link: "https://thermastrut.com",
+      title: "Atmora",
+      description: "ambient audio mixer tui",
+      subtitle: "noise to signal",
+      icon: Headphones,
+      status: "v0.1",
+      link: "https://github.com/whiskeytuesday/atmora",
+    },
+    {
+      title: "Sage Marketplace",
+      description: "Good advice for cool people",
+      subtitle: "don't tell me what to do, unless I ask",
+      icon: Sparkles,
+      status: "early development",
+      link: "#",
     },
     {
       title: "The Lifestyle Computer Company",
@@ -162,6 +182,14 @@
       link: "#",
     },
     {
+      title: "Thermastrut",
+      description: "construction technology",
+      subtitle: "might fuck around and change building construction technology idk",
+      icon: Wrench,
+      status: "backburner",
+      link: "https://thermastrut.com",
+    },
+    {
       title: "Stickers and Shirts",
       description: "design and merch",
       subtitle: "I took them down because redbubble only uses paypal and I hate paypal",
@@ -189,7 +217,7 @@
 
   const miscItems = [
     "Where should I put photos I take? I used to use instagram, flickr, 500px, they all suck",
-    "I'm a pretty big airplane and flightsim nerd, I don't think I have any links relevant though",
+    "I'm a pretty big airplane and flightsim nerd, I don't think I have any relevant links though",
     "I have a lot of vintage computers in various states of repair",
     "I have a lot of electronics projects in various states of completion",
     "I'm sure I'm forgetting some other things that should be on here",
