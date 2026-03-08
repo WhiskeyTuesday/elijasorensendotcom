@@ -5,6 +5,7 @@
     Youtube, Github, Mail, Building2,
     VenetianMask, Bike, Twitter, Linkedin,
     Tickets, Beef, Sparkles, Headphones,
+    ChevronRight, ChevronDown,
   } from 'lucide-svelte';
 
   import J17Icon from '$lib/icons/J17Icon.svelte';
@@ -13,6 +14,10 @@
 
   let currentTime = $state(new Date().toLocaleString());
   let isMinimized = $state(false);
+  let blogMinimized = $state(true);
+  let photosMinimized = $state(true);
+  let otherProjectsOpen = $state(false);
+  let backburnerOpen = $state(false);
 
   setInterval(() => {
     currentTime = new Date().toLocaleString();
@@ -95,17 +100,34 @@
     },
   ];
 
-  const currentProjects = [
+  const mainProjects = [
     {
       title: "17Jewels",
       description: "managed eventsourcing service",
       subtitle: "your system should never forget",
       icon: J17Icon,
-      status: "pre-alpha",
+      status: "alpha",
       color: "bg-red-800",
       borderColor: "border-red-900",
       link: "#",
     },
+    {
+      title: "mardicamp",
+      description: "it'll change your life",
+      subtitle: "come to mardi gras with your weird twitter friends",
+      icon: VenetianMask,
+      color: "bg-purple-400",
+      borderColor: "border-purple-600",
+      status: "2027 coming soon",
+      link: "https://mardi.camp",
+    },
+  ].map(obj => ({
+    ...obj,
+    color: obj.color || 'bg-green-400',
+    borderColor: obj.borderColor || 'border-green-600',
+  }));
+
+  const otherProjects = [
     {
       title: "office hours dot lol",
       description: "illegible tpot meetup directory",
@@ -147,16 +169,6 @@
       color: "bg-pink-400",
       borderColor: "border-pink-600",
       link: "https://lcc.solutions",
-    },
-    {
-      title: "mardicamp",
-      description: "it'll change your life",
-      subtitle: "come to mardi gras with your weird twitter friends",
-      icon: VenetianMask,
-      color: "bg-purple-400",
-      borderColor: "border-purple-600",
-      status: "Signup available soon",
-      link: "https://mardi.camp",
     },
   ].map(obj => ({
     ...obj,
@@ -226,9 +238,7 @@
 
 <div class="min-h-screen bg-gradient-to-br from-stone-100 to-stone-200 p-4 font-mono">
   <div class="mx-auto max-w-4xl">
-    <!-- Window Frame -->
     <div class="bg-stone-50 border-2 border-stone-400 shadow-lg" class:hidden={isMinimized}>
-      <!-- Title Bar -->
       <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <span class="text-stone-800 font-bold text-lg">elija sorensen dot com</span>
@@ -241,21 +251,17 @@
             <Minimize2 size={12} />
           </button>
           <button class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center">
-            <!-- TODO: some kind of joke on close... rickroll? -->
             <X size={12} onclick={() => alert("This is me not rickrolling you. You're welcome")} />
           </button>
         </div>
       </div>
 
-      <!-- Content Area -->
       <div class="p-6 space-y-8">
-        <!-- Header -->
         <div class="border-b border-stone-300 pb-4">
           <h1 class="text-2xl font-bold text-stone-800 mb-2">Elija Sorensen</h1>
           <p class="text-stone-600">Technologist, organizer, tinkerer, autodidact</p>
         </div>
 
-        <!-- Social Links -->
         <section>
           <h2 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
             me on the internet
@@ -274,11 +280,11 @@
                     <link.icon size={16} class="text-stone-600 group-hover:text-stone-800" />
                   </div>
                   <div class="flex-1 min-w-0">
-                    <div class="flex items-baseline space-x-2">
-                      <span class="font-bold text-stone-800">{link.title}</span>
-                      <span class="text-sm text-stone-600 font-mono">{link.handle}</span>
+                    <div class="flex items-baseline space-x-2 min-w-0">
+                      <span class="font-bold text-stone-800 flex-shrink-0">{link.title}</span>
+                      <span class="text-sm text-stone-600 font-mono truncate">{link.handle}</span>
                     </div>
-                    <p class="text-xs text-stone-500 italic">{link.description}</p>
+                    <p class="text-xs text-stone-500 italic truncate">{link.description}</p>
                   </div>
                   <ExternalLink size={12} class="text-stone-400 group-hover:text-stone-600 flex-shrink-0" />
                 </div>
@@ -287,16 +293,14 @@
           </div>
         </section>
 
-        <!-- Current Concerns -->
         <section>
           <h2 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
-            going concerns
+            main projects
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {#each currentProjects as project}
+            {#each mainProjects as project}
                 <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors">
                   <a href={project.link !== '#' ? project.link : undefined} target="_blank" rel="noopener noreferrer" class="block">
-                    <!-- Mini title bar -->
                     <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
                       <div class="flex items-center space-x-2">
                         <div class="w-2 h-2 {project.color} border {project.borderColor}"></div>
@@ -320,38 +324,86 @@
           </div>
         </section>
 
-        <!-- Failed and Backburnered -->
         <section>
-          <h2 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
-            the backburner
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {#each backburneredProjects as project}
-              <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors opacity-75">
-                <!-- Mini title bar -->
-                <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
-                  <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 bg-stone-400 border border-stone-500"></div>
-                    <span class="text-xs text-stone-600">{project.status}</span>
+          <button
+            onclick={() => otherProjectsOpen = !otherProjectsOpen}
+            class="text-xl font-bold text-stone-800 mb-4 flex items-center cursor-pointer hover:text-stone-600"
+          >
+            {#if otherProjectsOpen}
+              <ChevronDown size={20} class="mr-1" />
+            {:else}
+              <ChevronRight size={20} class="mr-1" />
+            {/if}
+            other projects
+          </button>
+          {#if otherProjectsOpen}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {#each otherProjects as project}
+                  <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors">
+                    <a href={project.link !== '#' ? project.link : undefined} target="_blank" rel="noopener noreferrer" class="block">
+                      <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                          <div class="w-2 h-2 {project.color} border {project.borderColor}"></div>
+                          <span class="text-xs text-stone-600">{project.status}</span>
+                        </div>
+                        {#if project.link !== '#'}
+                          <ExternalLink size={12} class="text-stone-500" />
+                        {/if}
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <project.icon size={20} class="text-stone-600 mt-1 flex-shrink-0" />
+                        <div>
+                          <h3 class="font-bold text-stone-800">{project.title}</h3>
+                          <p class="text-sm text-stone-600 mb-1">{project.description}</p>
+                          <p class="text-xs text-stone-500 italic">{project.subtitle}</p>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                  {#if project.link !== '#'}
-                    <ExternalLink size={12} class="text-stone-500" />
-                  {/if}
-                </div>
-                <div class="flex items-start space-x-3">
-                  <project.icon size={16} class="text-stone-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 class="font-bold text-stone-700 text-sm">{project.title}</h3>
-                    <p class="text-xs text-stone-600 mb-1">{project.description}</p>
-                    <p class="text-xs text-stone-500 italic">{project.subtitle}</p>
-                  </div>
-                </div>
-              </div>
-            {/each}
-          </div>
+              {/each}
+            </div>
+          {/if}
         </section>
 
-        <!-- Miscellaneous -->
+        <section>
+          <button
+            onclick={() => backburnerOpen = !backburnerOpen}
+            class="text-xl font-bold text-stone-800 mb-4 flex items-center cursor-pointer hover:text-stone-600"
+          >
+            {#if backburnerOpen}
+              <ChevronDown size={20} class="mr-1" />
+            {:else}
+              <ChevronRight size={20} class="mr-1" />
+            {/if}
+            the backburner
+          </button>
+          {#if backburnerOpen}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {#each backburneredProjects as project}
+                <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors opacity-75">
+                  <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                      <div class="w-2 h-2 bg-stone-400 border border-stone-500"></div>
+                      <span class="text-xs text-stone-600">{project.status}</span>
+                    </div>
+                    {#if project.link !== '#'}
+                      <ExternalLink size={12} class="text-stone-500" />
+                    {/if}
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <project.icon size={16} class="text-stone-500 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 class="font-bold text-stone-700 text-sm">{project.title}</h3>
+                      <p class="text-xs text-stone-600 mb-1">{project.description}</p>
+                      <p class="text-xs text-stone-500 italic">{project.subtitle}</p>
+                    </div>
+                  </div>
+                </div>
+              {/each}
+            </div>
+          {/if}
+        </section>
+
         <section>
           <h2 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
             also
@@ -368,7 +420,6 @@
           </div>
         </section>
 
-        <!-- other links -->
         <section>
           <h2 class="text-xl font-bold text-stone-800 mb-4 flex items-center">
             more of me
@@ -400,7 +451,6 @@
           </div>
         </section>
 
-        <!-- Footer -->
         <div class="border-t border-stone-300 pt-4 flex justify-between items-center text-xs text-stone-500">
           <span>> last updated: {lastUpdated}</span>
           <span>system time: {currentTime}</span>
@@ -408,14 +458,79 @@
       </div>
     </div>
 
-    <!-- Minimized State -->
-    {#if isMinimized}
-      <button
-        onclick={() => isMinimized = false}
-        class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
-      >
-        <span class="font-mono text-sm">elija sorensen dot com</span>
-      </button>
+    {#if !blogMinimized}
+      <div class="bg-stone-50 border-2 border-stone-400 shadow-lg mt-4">
+        <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="text-stone-800 font-bold text-lg">blog</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <button
+              onclick={() => blogMinimized = true}
+              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
+            >
+              <Minimize2 size={12} />
+            </button>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <h1 class="text-2xl font-bold text-stone-800">Blog</h1>
+          <p class="text-stone-600 mt-2">Coming soon.</p>
+        </div>
+      </div>
+    {/if}
+
+    {#if !photosMinimized}
+      <div class="bg-stone-50 border-2 border-stone-400 shadow-lg mt-4">
+        <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="text-stone-800 font-bold text-lg">photos</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <button
+              onclick={() => photosMinimized = true}
+              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
+            >
+              <Minimize2 size={12} />
+            </button>
+          </div>
+        </div>
+
+        <div class="p-6">
+          <h1 class="text-2xl font-bold text-stone-800">Photos</h1>
+          <p class="text-stone-600 mt-2">Coming soon.</p>
+        </div>
+      </div>
+    {/if}
+
+    {#if isMinimized || blogMinimized || photosMinimized}
+      <div class="flex space-x-2 mt-4">
+        {#if isMinimized}
+          <button
+            onclick={() => isMinimized = false}
+            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
+          >
+            <span class="font-mono text-sm">elija sorensen dot com</span>
+          </button>
+        {/if}
+        {#if blogMinimized}
+          <button
+            onclick={() => blogMinimized = false}
+            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
+          >
+            <span class="font-mono text-sm">blog</span>
+          </button>
+        {/if}
+        {#if photosMinimized}
+          <button
+            onclick={() => photosMinimized = false}
+            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
+          >
+            <span class="font-mono text-sm">photos</span>
+          </button>
+        {/if}
+      </div>
     {/if}
   </div>
 </div>
