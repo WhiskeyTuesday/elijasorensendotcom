@@ -9,6 +9,7 @@
   } from 'lucide-svelte';
 
   import J17Icon from '$lib/icons/J17Icon.svelte';
+  import MapleLeafIcon from '$lib/icons/MapleLeafIcon.svelte';
 
   import { onMount } from 'svelte';
 
@@ -169,6 +170,14 @@
       color: "bg-pink-400",
       borderColor: "border-pink-600",
       link: "https://lcc.solutions",
+    },
+    {
+      title: "Can I Go?",
+      description: "Canadian provincial residency tracker",
+      subtitle: "where did the time go?",
+      icon: MapleLeafIcon,
+      status: "just released",
+      link: "https://canigo.ca",
     },
   ].map(obj => ({
     ...obj,
