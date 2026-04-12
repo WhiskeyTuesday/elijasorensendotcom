@@ -255,6 +255,135 @@
 
 <div class="min-h-screen bg-gradient-to-br from-stone-100 to-stone-200 p-4 font-mono">
   <div class="mx-auto max-w-4xl">
+    {#if isMinimized || blogMinimized || photosMinimized}
+      <div class="flex space-x-2 mb-4">
+        {#if blogMinimized}
+          <button
+            onclick={() => blogMinimized = false}
+            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
+          >
+            <span class="font-mono text-sm">blog</span>
+          </button>
+        {/if}
+        {#if photosMinimized}
+          <button
+            onclick={() => photosMinimized = false}
+            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
+          >
+            <span class="font-mono text-sm">photos</span>
+          </button>
+        {/if}
+        {#if isMinimized}
+          <button
+            onclick={() => isMinimized = false}
+            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
+          >
+            <span class="font-mono text-sm">elija sorensen dot com</span>
+          </button>
+        {/if}
+      </div>
+    {/if}
+
+    {#if !blogMinimized}
+      <div class="bg-stone-50 border-2 border-stone-400 shadow-lg my-4">
+        <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="text-stone-800 font-bold text-lg">blog</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <a
+              href="/feed.xml"
+              target="_blank"
+              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-orange-200 hover:border-orange-400 flex items-center justify-center transition-colors"
+              title="RSS Feed"
+            >
+              <Rss size={12} />
+            </a>
+            <button
+              onclick={() => blogMinimized = true}
+              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
+            >
+              <Minimize2 size={12} />
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4">
+          {#if data.posts.length === 0}
+            <p class="text-stone-400 text-sm italic">No posts yet.</p>
+          {:else}
+            <div class="space-y-2">
+              {#each data.posts as post}
+                <a
+                  href="/blog/{post.slug}"
+                  class="block bg-stone-100 border-2 border-stone-300 hover:border-stone-500 hover:bg-stone-50 p-3"
+                >
+                  <div class="flex items-start justify-between gap-3">
+                    <div>
+                      <span class="text-sm font-bold text-stone-800">{post.title}</span>
+                      {#if post.description}
+                        <p class="text-xs text-stone-500 mt-0.5">{post.description}</p>
+                      {/if}
+                    </div>
+                    {#if post.date}
+                      <span class="text-xs text-stone-400 shrink-0 flex items-center space-x-1">
+                        <Calendar size={11} />
+                        <span>{post.date}</span>
+                      </span>
+                    {/if}
+                  </div>
+                </a>
+              {/each}
+            </div>
+          {/if}
+        </div>
+      </div>
+    {/if}
+
+    {#if !photosMinimized}
+      <div class="bg-stone-50 border-2 border-stone-400 shadow-lg my-4">
+        <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="text-stone-800 font-bold text-lg">photos</span>
+          </div>
+          <div class="flex items-center space-x-1">
+            <button
+              onclick={() => photosMinimized = true}
+              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
+            >
+              <Minimize2 size={12} />
+            </button>
+          </div>
+        </div>
+
+        <div class="p-4">
+          {#if data.featuredPhoto}
+            <a href="/photos" class="block group">
+              <div class="bg-stone-200 border-2 border-stone-300 group-hover:border-stone-500 overflow-hidden">
+                <img
+                  src={data.featuredPhoto.src}
+                  alt={data.featuredPhoto.caption || 'Featured photo'}
+                  class="w-full max-h-72 object-cover"
+                />
+              </div>
+              {#if data.featuredPhoto.caption}
+                <p class="text-xs text-stone-600 mt-2">{data.featuredPhoto.caption}</p>
+              {/if}
+              {#if data.featuredPhoto.meta}
+                <div class="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-stone-400 mt-1">
+                  {#each Object.entries(data.featuredPhoto.meta) as [key, value]}
+                    <span>{key}: {value}</span>
+                  {/each}
+                </div>
+              {/if}
+              <p class="text-sm text-stone-700 group-hover:text-stone-900 mt-3">All photos →</p>
+            </a>
+          {:else}
+            <a href="/photos" class="text-sm text-stone-700 hover:text-stone-900">Photos →</a>
+          {/if}
+        </div>
+      </div>
+    {/if}
     <div class="bg-stone-50 border-2 border-stone-400 shadow-lg" class:hidden={isMinimized}>
       <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
         <div class="flex items-center space-x-2">
@@ -474,135 +603,5 @@
         </div>
       </div>
     </div>
-
-    {#if !blogMinimized}
-      <div class="bg-stone-50 border-2 border-stone-400 shadow-lg mt-4">
-        <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <span class="text-stone-800 font-bold text-lg">blog</span>
-          </div>
-          <div class="flex items-center space-x-1">
-            <a
-              href="/feed.xml"
-              target="_blank"
-              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-orange-200 hover:border-orange-400 flex items-center justify-center transition-colors"
-              title="RSS Feed"
-            >
-              <Rss size={12} />
-            </a>
-            <button
-              onclick={() => blogMinimized = true}
-              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
-            >
-              <Minimize2 size={12} />
-            </button>
-          </div>
-        </div>
-
-        <div class="p-4">
-          {#if data.posts.length === 0}
-            <p class="text-stone-400 text-sm italic">No posts yet.</p>
-          {:else}
-            <div class="space-y-2">
-              {#each data.posts as post}
-                <a
-                  href="/blog/{post.slug}"
-                  class="block bg-stone-100 border-2 border-stone-300 hover:border-stone-500 hover:bg-stone-50 p-3"
-                >
-                  <div class="flex items-start justify-between gap-3">
-                    <div>
-                      <span class="text-sm font-bold text-stone-800">{post.title}</span>
-                      {#if post.description}
-                        <p class="text-xs text-stone-500 mt-0.5">{post.description}</p>
-                      {/if}
-                    </div>
-                    {#if post.date}
-                      <span class="text-xs text-stone-400 shrink-0 flex items-center space-x-1">
-                        <Calendar size={11} />
-                        <span>{post.date}</span>
-                      </span>
-                    {/if}
-                  </div>
-                </a>
-              {/each}
-            </div>
-          {/if}
-        </div>
-      </div>
-    {/if}
-
-    {#if !photosMinimized}
-      <div class="bg-stone-50 border-2 border-stone-400 shadow-lg mt-4">
-        <div class="bg-gradient-to-r from-stone-300 to-stone-400 border-b-2 border-stone-500 px-4 py-2 flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <span class="text-stone-800 font-bold text-lg">photos</span>
-          </div>
-          <div class="flex items-center space-x-1">
-            <button
-              onclick={() => photosMinimized = true}
-              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
-            >
-              <Minimize2 size={12} />
-            </button>
-          </div>
-        </div>
-
-        <div class="p-4">
-          {#if data.featuredPhoto}
-            <a href="/photos" class="block group">
-              <div class="bg-stone-200 border-2 border-stone-300 group-hover:border-stone-500 overflow-hidden">
-                <img
-                  src={data.featuredPhoto.src}
-                  alt={data.featuredPhoto.caption || 'Featured photo'}
-                  class="w-full max-h-72 object-cover"
-                />
-              </div>
-              {#if data.featuredPhoto.caption}
-                <p class="text-xs text-stone-600 mt-2">{data.featuredPhoto.caption}</p>
-              {/if}
-              {#if data.featuredPhoto.meta}
-                <div class="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-stone-400 mt-1">
-                  {#each Object.entries(data.featuredPhoto.meta) as [key, value]}
-                    <span>{key}: {value}</span>
-                  {/each}
-                </div>
-              {/if}
-              <p class="text-sm text-stone-700 group-hover:text-stone-900 mt-3">All photos →</p>
-            </a>
-          {:else}
-            <a href="/photos" class="text-sm text-stone-700 hover:text-stone-900">Photos →</a>
-          {/if}
-        </div>
-      </div>
-    {/if}
-
-    {#if isMinimized || blogMinimized || photosMinimized}
-      <div class="flex space-x-2 mt-4">
-        {#if isMinimized}
-          <button
-            onclick={() => isMinimized = false}
-            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
-          >
-            <span class="font-mono text-sm">elija sorensen dot com</span>
-          </button>
-        {/if}
-        {#if blogMinimized}
-          <button
-            onclick={() => blogMinimized = false}
-            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
-          >
-            <span class="font-mono text-sm">blog</span>
-          </button>
-        {/if}
-        {#if photosMinimized}
-          <button
-            onclick={() => photosMinimized = false}
-            class="bg-stone-300 border-2 border-stone-400 px-4 py-2 hover:bg-stone-200 transition-colors"
-          >
-            <span class="font-mono text-sm">photos</span>
-          </button>
-        {/if}
-      </div>
-    {/if}
   </div>
 </div>

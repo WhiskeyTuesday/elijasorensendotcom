@@ -58,7 +58,7 @@
 		{/if}
 
 		<!-- Post Body -->
-		<div class="p-6 prose prose-stone prose-sm max-w-none
+		<div class="p-6 prose prose-stone prose-sm max-w-none font-sans
 			prose-headings:font-mono prose-headings:text-stone-800
 			prose-a:text-stone-700 prose-a:underline hover:prose-a:text-stone-900
 			prose-code:text-stone-700 prose-code:bg-stone-200 prose-code:px-1 prose-code:rounded

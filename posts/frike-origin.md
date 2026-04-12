@@ -6,14 +6,14 @@ tags:
   - cycling
   - hacking
   - oss
-  - zwift
+  - Zwift
   - gamedev
 ---
 
 The last thing I needed was another project. I should be working on
 [j17](https://www.j17.dev) right now but you know how that goes. I've been an on
-and off zwift user for going on ten years now and they've been frustrating me
-(and many others for years). Reddit and the comments on ZwiftInsider and gplama
+and off Zwift user for going on ten years now and they've been frustrating me
+(and many others for years). Reddit and the comments on ZwiftInsider and GPLama
 videos etc, probably their own forums too, are perpetually full of complaints
 about the UI for instance and changes have been extremely slow in coming.
 
@@ -23,7 +23,7 @@ I was riding the other day and started thinking it was time.
 
 ## The long answer to why
 
-**The pricing** Zwift is expensive. There's no way around it. It's $20 USD per
+**The pricing:** Zwift is expensive. There's no way around it. It's $20 USD per
 month, you can cancel in the spring and pay again when the weather turns but any
 even half-serious rider is in it for a few hundred dollars a year. There's a
 trial mode but it's (I think) 25 km (\~18 miles) per month.
@@ -36,11 +36,11 @@ bet is the majority of people who would be interested in this sort of thing.
 Zwift also has no family plan and no pricing options other than monthly or
 annually. No students, no seniors, no veterans, no anything as far as I know.
 
-**The general closed-ness** Zwift is not interested in being a platform for you
+**The general closed-ness:** Zwift is not interested in being a platform for you
 to build on; fair enough, up to them but it annoys me. They have a developer
 program in theory, but they don't grant access to hobby developers. The only
 partner with API access I could find mention of online is WTRL (the racing
-league). You can email developers@zwift.com to "register interest" but people on
+league). You can email developers@Zwift.com to "register interest" but people on
 the forums report getting nothing back. There have been forum threads requesting
 a public API going back years with no movement.
 
@@ -52,7 +52,7 @@ People like [DCRainmaker](https://www.dcrainmaker.com/) and
 versions of this observation for years — the walled garden is a choice, not a
 technical constraint, and it limits what the ecosystem can become.
 
-**The proprietary hardware** This is the one that tipped me over the edge. Zwift
+**The proprietary hardware:** This is the one that tipped me over the edge. Zwift
 has an accessory ecosystem in a way. There's some 3rd party hardware (mostly
 from Wahoo and TacX) and more recently 1st party hardware made or at least
 branded and endorsed by Zwift (the Zwift bike and the Zwift hub). Here's the
@@ -81,7 +81,7 @@ Peloton's stock chart some time if you want a laugh) so I can afford to just do
 whatever I want.
 
 Me to Claude:
-> I'm going to build a hackable OSS friendly zwift alternative for weirdos and
+> I'm going to build a hackable OSS friendly Zwift alternative for weirdos and
 > hackers so I guess I'll end up reverse engineering their protocol more
 > completely if I want to support their hardware or vice-versa
 
@@ -101,14 +101,14 @@ experiment let's put it back on the backburner.
 
 I started thinking about the world model instead. LLM assisted development seems
 to have made my activation floor for this kind of thing much lower. More on that
-later. The world isn't geometry in a unity scene (zwift is unity btw) it's a
+later. The world isn't geometry in a unity scene (Zwift is unity btw) it's a
 directed graph. Your position according to Frike is an offset along an edge
 between two vertices. Your state is a bunch of things but the most important are
 location and velocity. The physics "engine" is just your location, your power
 output since the last tick, the slope, the rolling resistance, air resistance,
 and a few other similar constants and variables in a function. The math is
 trivial so we'll just do it on the server and let the client be IO and a
-display. As far as I know zwift does physics on the client which seems crazy to
+display. As far as I know Zwift does physics on the client which seems crazy to
 me but must have made sense in 2014. I think they started out as a singleplayer
 visualisation and added multiplayer universe as an afterthought.
 
@@ -181,7 +181,7 @@ subscribers. I on the other hand have no employees, no subscribers, no revenue,
 other projects I should be working on that also have no revenue, a Claude
 subscription, and a lot of coffee.
 
-> the thing is that zwift's graphics are really not that impressive in the first
+> the thing is that Zwift's graphics are really not that impressive in the first
 > place imo. I don't know where all that money is going. I mean sure it's a
 > large landscape especially including the other "worlds" but all of watopia
 > even doesn't seem like THAT difficult of a project really especially now given
@@ -220,7 +220,7 @@ fees and all that). I'll probably offer family plans and other kinds of
 discounts too. Maybe I'm missing something and costs are way higher and this is
 impossible but uh... I don't think so.
 
-## anti-anti-cheat
+## Anti-anti-cheat
 
 Because we're not going to have any racing (the temptation to refer to any
 hypothetical company/project as we is funny, it's just me really) except maybe
@@ -264,7 +264,7 @@ Zwift has a lot of brand deals and realworld bike frames and wheelsets and kits
 and helmets and things like that, which is fun and fine. The frames and wheels
 also have actual performance characteristics though, which, granted, gives more
 life to the "droplet" economy but also introduces a whole FOMO inducing
-meta-gaming loop where you have to read the wiki and reddit and gplama blog and
+meta-gaming loop where you have to read the wiki and reddit and GPLama blog and
 god knows what else to not feel like you're leaving XP per hour on the table.
 Maybe some people like it but it all seems like gear whore middle-aged dude
 stuff to me. I have that mode in me don't get me wrong but... I dunno it just
@@ -278,14 +278,14 @@ This will also make the physics model simpler.
 
 ## What's done, what's next
 
-Four components now, all Python, all talking to each other:
+Three components now, all Python, all talking to each other:
 
-- **Cassowary** (emulator) — fake FTMS trainer over TCP. Steady state, ramp,
+- **Cassowary** (emulator): fake FTMS trainer over TCP. Steady state, ramp,
 intervals, FIT file replay, and .zwo (Zwift workout format) playback. Simulates
 heart rate too. Speaks real FTMS binary by default (same bytes a Wahoo Kickr
 would send) with a JSON fallback for debugging.
 
-- **Edsel** (server) — server-authoritative physics at 4Hz. Graph world model
+- **Edsel** (server): server-authoritative physics at 4Hz. Graph world model
 with piecewise-linear elevation profiles and terrain noise. Drafting with
 diminishing returns for pelotons. Segment timing with leaderboards. ERG and SIM
 mode. Economy (XP for distance, Spokes for effort). Chat with graph-distance
@@ -293,7 +293,7 @@ proximity filtering. Structured workout scheduling. Multi-connection model with
 five roles (trainer, sensor, controller, actuator, viewer) so a companion app
 and the main client can connect simultaneously for the same rider.
 
-- **Braben** (reference client) — Elite 1984 wireframe renderer. Perspective
+- **Braben** (reference client): Elite 1984 wireframe renderer. Perspective
 projection, animated bikes with speed-dependent spoke blur, roadside scatter
 seeded by edge ID, minimap, HUD, chat overlay. Synthesized sound (wind,
 drivetrain, freehub buzz). Auto-records every ride to a FIT file you can upload
@@ -306,7 +306,7 @@ meters), HRS (heart rate), CSCS (speed/cadence). Plus a transport layer I'm
 calling GATT-over-TCP that multiplexes all of them over a single connection with
 a 7-byte frame header. Same parser code handles both the TCP and BLE paths.
 There's an argument that this should be a standalone open spec independent of
-Frike — nobody seems to have standardised "just put GATT frames on TCP" and it
+Frike; nobody seems to have standardised "just put GATT frames on TCP" and it
 solves real problems (multi-client access, WiFi bridging, browser clients via
 WebSocket) but I'll get to that eventually maybe.
 
@@ -322,7 +322,7 @@ before I rewrite everything else.
 - Work on that Mario Kart-y mode maybe.
 - Powerups for that and for casual riding for that matter.
 - Some more architectural review and testing more esoteric features in the
-original system to generate some insights before I do the next generation
+original system to generate some insights before I do the next generation.
 
 
 ## Conclusions such as they are
@@ -337,6 +337,10 @@ only vaguely knows a cannondale from a zipp.
 I've got maybe 20 hours in the project so far. If it stops being fun I'll
 probably stop working on it but I got pretty far in a couple of half days. Let
 me know if you see this and want to alpha test some stuff for me.
+
+If anything kills this it'll be that at the price I'm targeting there's no room
+at all for marketing spend, so it's got to grow organically if at all... on the
+other hand I'll probaby just keep building it even if I'm the only user.
 
 ## Look!
 
