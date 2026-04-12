@@ -5,20 +5,29 @@
     Youtube, Github, Mail, Building2,
     VenetianMask, Bike, Twitter, Linkedin,
     Tickets, Beef, Sparkles, Headphones,
-    ChevronRight, ChevronDown,
+    ChevronRight, ChevronDown, Rss,
   } from 'lucide-svelte';
 
   import J17Icon from '$lib/icons/J17Icon.svelte';
   import MapleLeafIcon from '$lib/icons/MapleLeafIcon.svelte';
 
   import { onMount } from 'svelte';
+  import { getWindowState, setWindowState } from '$lib/windowState';
+
+  let { data } = $props();
 
   let currentTime = $state(new Date().toLocaleString());
-  let isMinimized = $state(false);
-  let blogMinimized = $state(true);
-  let photosMinimized = $state(true);
-  let otherProjectsOpen = $state(false);
-  let backburnerOpen = $state(false);
+  let isMinimized = $state(getWindowState('main', false));
+  let blogMinimized = $state(getWindowState('blog', true));
+  let photosMinimized = $state(getWindowState('photos', true));
+  let otherProjectsOpen = $state(getWindowState('otherProjects', false));
+  let backburnerOpen = $state(getWindowState('backburner', false));
+
+  $effect(() => { setWindowState('main', isMinimized); });
+  $effect(() => { setWindowState('blog', blogMinimized); });
+  $effect(() => { setWindowState('photos', photosMinimized); });
+  $effect(() => { setWindowState('otherProjects', otherProjectsOpen); });
+  $effect(() => { setWindowState('backburner', backburnerOpen); });
 
   setInterval(() => {
     currentTime = new Date().toLocaleString();
@@ -110,7 +119,7 @@
       status: "alpha",
       color: "bg-red-800",
       borderColor: "border-red-900",
-      link: "#",
+      link: "https://j17.dev",
     },
     {
       title: "mardicamp",
@@ -237,7 +246,6 @@
   ];
 
   const miscItems = [
-    "Where should I put photos I take? I used to use instagram, flickr, 500px, they all suck",
     "I'm a pretty big airplane and flightsim nerd, I don't think I have any relevant links though",
     "I have a lot of vintage computers in various states of repair",
     "I have a lot of electronics projects in various states of completion",
@@ -253,14 +261,14 @@
           <span class="text-stone-800 font-bold text-lg">elija sorensen dot com</span>
         </div>
         <div class="flex items-center space-x-1">
+          <button class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center">
+            <X size={12} onclick={() => alert("This is me not rickrolling you. You're welcome")} />
+          </button>
           <button
             onclick={() => isMinimized = true}
             class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
           >
             <Minimize2 size={12} />
-          </button>
-          <button class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center">
-            <X size={12} onclick={() => alert("This is me not rickrolling you. You're welcome")} />
           </button>
         </div>
       </div>
@@ -474,6 +482,14 @@
             <span class="text-stone-800 font-bold text-lg">blog</span>
           </div>
           <div class="flex items-center space-x-1">
+            <a
+              href="/feed.xml"
+              target="_blank"
+              class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-orange-200 hover:border-orange-400 flex items-center justify-center transition-colors"
+              title="RSS Feed"
+            >
+              <Rss size={12} />
+            </a>
             <button
               onclick={() => blogMinimized = true}
               class="w-6 h-6 bg-stone-200 border border-stone-400 hover:bg-stone-300 flex items-center justify-center"
@@ -483,9 +499,34 @@
           </div>
         </div>
 
-        <div class="p-6">
-          <h1 class="text-2xl font-bold text-stone-800">Blog</h1>
-          <p class="text-stone-600 mt-2">Coming soon.</p>
+        <div class="p-4">
+          {#if data.posts.length === 0}
+            <p class="text-stone-400 text-sm italic">No posts yet.</p>
+          {:else}
+            <div class="space-y-2">
+              {#each data.posts as post}
+                <a
+                  href="/blog/{post.slug}"
+                  class="block bg-stone-100 border-2 border-stone-300 hover:border-stone-500 hover:bg-stone-50 p-3"
+                >
+                  <div class="flex items-start justify-between gap-3">
+                    <div>
+                      <span class="text-sm font-bold text-stone-800">{post.title}</span>
+                      {#if post.description}
+                        <p class="text-xs text-stone-500 mt-0.5">{post.description}</p>
+                      {/if}
+                    </div>
+                    {#if post.date}
+                      <span class="text-xs text-stone-400 shrink-0 flex items-center space-x-1">
+                        <Calendar size={11} />
+                        <span>{post.date}</span>
+                      </span>
+                    {/if}
+                  </div>
+                </a>
+              {/each}
+            </div>
+          {/if}
         </div>
       </div>
     {/if}
@@ -506,9 +547,31 @@
           </div>
         </div>
 
-        <div class="p-6">
-          <h1 class="text-2xl font-bold text-stone-800">Photos</h1>
-          <p class="text-stone-600 mt-2">Coming soon.</p>
+        <div class="p-4">
+          {#if data.featuredPhoto}
+            <a href="/photos" class="block group">
+              <div class="bg-stone-200 border-2 border-stone-300 group-hover:border-stone-500 overflow-hidden">
+                <img
+                  src={data.featuredPhoto.src}
+                  alt={data.featuredPhoto.caption || 'Featured photo'}
+                  class="w-full max-h-72 object-cover"
+                />
+              </div>
+              {#if data.featuredPhoto.caption}
+                <p class="text-xs text-stone-600 mt-2">{data.featuredPhoto.caption}</p>
+              {/if}
+              {#if data.featuredPhoto.meta}
+                <div class="flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-stone-400 mt-1">
+                  {#each Object.entries(data.featuredPhoto.meta) as [key, value]}
+                    <span>{key}: {value}</span>
+                  {/each}
+                </div>
+              {/if}
+              <p class="text-sm text-stone-700 group-hover:text-stone-900 mt-3">All photos →</p>
+            </a>
+          {:else}
+            <a href="/photos" class="text-sm text-stone-700 hover:text-stone-900">Photos →</a>
+          {/if}
         </div>
       </div>
     {/if}
