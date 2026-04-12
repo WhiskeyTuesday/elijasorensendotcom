@@ -8,8 +8,6 @@ tags:
   - oss
   - zwift
   - gamedev
-
-draft: true
 ---
 
 The last thing I needed was another project. I should be working on
@@ -163,11 +161,11 @@ The Mighty 8th.
 
 ## Early progress
 
-![Braben screenshot](braben.png)
+![Braben screenshot](/blog/frike-origin/braben.png)
 
 This is from the first day of development. Stick man, bike, road surface, stats.
 
-![Multiple riders](multirider.png)
+![Multiple riders](/blog/frike-origin/multiplayer.png)
 
 Each rider here is a client process and an emulator process passing real packets
 back and forth. The server is doing the physics and sending out updates to each
@@ -340,4 +338,7 @@ I've got maybe 20 hours in the project so far. If it stops being fun I'll
 probably stop working on it but I got pretty far in a couple of half days. Let
 me know if you see this and want to alpha test some stuff for me.
 
-## Additional screenshots
+## Look!
+
+![Diverging roads](/blog/frike-origin/roads.png)
+<video src="/blog/frike-origin/screencast.mp4" controls playsinline muted loop></video>
