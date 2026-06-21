@@ -6,6 +6,7 @@
     VenetianMask, Bike, Twitter, Linkedin,
     Tickets, Beef, Sparkles, Headphones,
     ChevronRight, ChevronDown, Rss,
+    Bird, Grid2x2Plus, BicepsFlexed,
   } from 'lucide-svelte';
 
   import J17Icon from '$lib/icons/J17Icon.svelte';
@@ -122,6 +123,26 @@
       link: "https://j17.dev",
     },
     {
+      title: "ShiftRobin",
+      description: "SMS shift-fill dispatch",
+      subtitle: "the 3 AM shift-fill problem, solved in 3 texts",
+      icon: Bird,
+      status: "alpha",
+      color: "bg-orange-500",
+      borderColor: "border-orange-700",
+      link: "https://www.shiftrobin.com",
+    },
+    {
+      title: "Hunky",
+      description: "Stage just the pretty hunks",
+      subtitle: "Brawny Jahvo is a legally distinct original character",
+      icon: BicepsFlexed,
+      status: "opencore",
+      color: "bg-yellow-300",
+      borderColor: "border-yellow-500",
+      link: "https://www.hunky.dev",
+    },
+    {
       title: "mardicamp",
       description: "it'll change your life",
       subtitle: "come to mardi gras with your weird twitter friends",
@@ -139,6 +160,16 @@
 
   const otherProjects = [
     {
+      title: "frike",
+      description: "open source indoor cycling",
+      subtitle: "free bike. your trainer, your rules.",
+      icon: Bike,
+      status: "mostly blog posts",
+      color: "bg-sky-400",
+      borderColor: "border-sky-600",
+      // link: "https://frike.me",
+    },
+    {
       title: "office hours dot lol",
       description: "illegible tpot meetup directory",
       subtitle: "entirely official and totally legitimate",
@@ -151,7 +182,7 @@
       description: "compliance/adherence thing for weight loss",
       subtitle: "people and apps are both too bloated",
       icon: Beef,
-      status: "early development",
+      status: "bordering on the backburner, so busy",
       link: "#",
     },
     {
@@ -161,14 +192,6 @@
       icon: Headphones,
       status: "v0.1",
       link: "https://github.com/whiskeytuesday/atmora",
-    },
-    {
-      title: "Sage Marketplace",
-      description: "Good advice for cool people",
-      subtitle: "don't tell me what to do, unless I ask",
-      icon: Sparkles,
-      status: "early development",
-      link: "#",
     },
     {
       title: "The Lifestyle Computer Company",
@@ -195,6 +218,14 @@
   }));
 
   const backburneredProjects = [
+    {
+      title: "Sage Marketplace",
+      description: "Good advice for cool people",
+      subtitle: "don't tell me what to do, unless I ask",
+      icon: Sparkles,
+      status: "co-founder awol",
+      link: "#",
+    },
     {
       title: "Gather Social",
       description: "fixing dating and human social interaction",
