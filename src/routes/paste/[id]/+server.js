@@ -17,6 +17,7 @@ function page(id, bodyHtml) {
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex" />
+<link rel="icon" href="/favicon.svg" />
 <title>${escapeHtml(id)} — paste</title>
 <style>
   :root { color-scheme: light; }
