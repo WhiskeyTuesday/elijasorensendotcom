@@ -1,0 +1,59 @@
+{
+  "spec": {
+    "agent_types": ["service"],
+    "target_types": ["paste"],
+    "aggregate_types": {
+      "paste": {
+        "events": {
+          "was_created": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "md": { "type": "string" },
+                "expires_at": { "type": ["integer", "null"] }
+              },
+              "required": ["md"]
+            },
+            "handler": [
+              { "set": { "target": "", "value": "$.data" } }
+            ]
+          },
+          "was_deleted": {
+            "schema": { "type": "object" },
+            "handler": [
+              { "set": { "target": "deleted", "value": true } }
+            ]
+          }
+        }
+      },
+      "index": {
+        "events": {
+          "entry_added": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "created_at": { "type": "integer" },
+                "expires_at": { "type": ["integer", "null"] }
+              },
+              "required": ["id", "created_at"]
+            },
+            "handler": [
+              { "append_unique": { "target": "entries", "value": "$.data" } }
+            ]
+          },
+          "entry_removed": {
+            "schema": {
+              "type": "object",
+              "properties": { "id": { "type": "string" } },
+              "required": ["id"]
+            },
+            "handler": [
+              { "remove": { "target": "entries", "where": { "id": "$.data.id" } } }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
