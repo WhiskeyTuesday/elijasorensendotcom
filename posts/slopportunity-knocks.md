@@ -18,7 +18,7 @@ code and about how computers work. I've had the chance to watch one person do
 it and it wasn't terrifying or anything but he's also one of the smartest
 people I know and a math major so it's probably not a representative sample.
 
-Anyway, from over here as a Pretty Good™ programmer this new era is pretty fun
+Anyway, from over here as a [Pretty Good™](https://www.aprettygoodwebsite.com/) programmer this new era is pretty fun
 so far. I'm counting the "new era" as being roughly from CC 4.5 to present. I
 can see what Casey Muratori (for instance) means when he says he's just not
 interested at all, and that to him the whole point is to figure out *how* to do
