@@ -69,16 +69,16 @@ function page(id, bodyHtml) {
   /* standalone page (outside the app shell) — just follow the OS preference */
   @media (prefers-color-scheme: dark) {
     :root { color-scheme: dark; }
-    body { background: linear-gradient(to bottom right, #211f1d, #262320); color: #dedbd5; }
-    .window { background: #2b2723; border-color: #47413b; }
-    .titlebar { background: linear-gradient(to right, #403a34, #4a443d); border-bottom-color: #574f48; color: #dedbd5; }
-    .content h1, .content h2, .content h3, .content h4 { color: #dedbd5; }
-    .content a { color: #b3aea7; }
-    .content a:hover { color: #e8e5e0; }
-    .content code { background: #34302b; }
-    .content pre { background: #262320; border-color: #37322d; }
-    .content blockquote { border-left-color: #574f48; color: #b3aea7; }
-    .content th, .content td { border-color: #37322d; }
+    body { background: linear-gradient(to bottom right, #1d1e20, #222223); color: #dadad8; }
+    .window { background: #272626; border-color: #43403e; }
+    .titlebar { background: linear-gradient(to right, #3c3937, #464340); border-bottom-color: #534e4b; color: #dadad8; }
+    .content h1, .content h2, .content h3, .content h4 { color: #dadad8; }
+    .content a { color: #afadaa; }
+    .content a:hover { color: #e4e4e3; }
+    .content code { background: #302f2e; }
+    .content pre { background: #222223; border-color: #333130; }
+    .content blockquote { border-left-color: #534e4b; color: #afadaa; }
+    .content th, .content td { border-color: #333130; }
   }
 </style>
 </head>
