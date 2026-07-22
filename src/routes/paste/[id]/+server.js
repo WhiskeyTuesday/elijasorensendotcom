@@ -65,6 +65,21 @@ function page(id, bodyHtml) {
   .content img { max-width: 100%; }
   .content table { border-collapse: collapse; }
   .content th, .content td { border: 1px solid #d6d3d1; padding: 0.4rem 0.6rem; }
+
+  /* standalone page (outside the app shell) — just follow the OS preference */
+  @media (prefers-color-scheme: dark) {
+    :root { color-scheme: dark; }
+    body { background: linear-gradient(to bottom right, #211f1d, #262320); color: #dedbd5; }
+    .window { background: #2b2723; border-color: #47413b; }
+    .titlebar { background: linear-gradient(to right, #403a34, #4a443d); border-bottom-color: #574f48; color: #dedbd5; }
+    .content h1, .content h2, .content h3, .content h4 { color: #dedbd5; }
+    .content a { color: #b3aea7; }
+    .content a:hover { color: #e8e5e0; }
+    .content code { background: #34302b; }
+    .content pre { background: #262320; border-color: #37322d; }
+    .content blockquote { border-left-color: #574f48; color: #b3aea7; }
+    .content th, .content td { border-color: #37322d; }
+  }
 </style>
 </head>
 <body>

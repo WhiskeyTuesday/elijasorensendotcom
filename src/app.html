@@ -5,6 +5,18 @@
     <link rel="icon" href="%sveltekit.assets%/favicon.svg" />
     <link rel="alternate" type="application/atom+xml" title="Elija Sorensen" href="/feed.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // set theme before paint to avoid a flash of the wrong palette
+      (function () {
+        try {
+          var t = localStorage.getItem('theme') || 'system';
+          var dark =
+            t === 'dark' ||
+            (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (e) {}
+      })();
+    </script>
     %sveltekit.head%
     <script
       defer
