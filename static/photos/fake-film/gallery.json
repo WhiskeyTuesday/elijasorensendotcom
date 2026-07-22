@@ -1,0 +1,16 @@
+{
+  "title": "fake film",
+  "description": "rewindpix retro camera thing",
+  "photos": [
+    { "id": "post001", "ext": "webp", "caption": null, "meta": { "date": "2026-07-18", "stock": "VS200" } },
+    { "id": "post002", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "VS200" } },
+    { "id": "post003", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "VS200" } },
+    { "id": "post004", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "VS200" } },
+    { "id": "post005", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "VS200" } },
+    { "id": "post006", "ext": "webp", "caption": null, "meta": { "date": "2026-07-18", "stock": "THEHOTEL" } },
+    { "id": "post007", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "THEHOTEL" } },
+    { "id": "post008", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "THEHOTEL" } },
+    { "id": "post009", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "PT400LC" } },
+    { "id": "post010", "ext": "webp", "caption": null, "meta": { "date": "2026-07-19", "stock": "PT400LC" } }
+  ]
+}
