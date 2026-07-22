@@ -7,6 +7,7 @@
     Tickets, Beef, Sparkles, Headphones,
     ChevronRight, ChevronDown, Rss,
     Bird, Grid2x2Plus, BicepsFlexed,
+    Plane,
   } from 'lucide-svelte';
 
   import J17Icon from '$lib/icons/J17Icon.svelte';
@@ -21,12 +22,14 @@
   let isMinimized = $state(getWindowState('main', false));
   let blogMinimized = $state(getWindowState('blog', true));
   let photosMinimized = $state(getWindowState('photos', true));
+  let sideProjectsOpen = $state(getWindowState('sideProjects', false));
   let otherProjectsOpen = $state(getWindowState('otherProjects', false));
   let backburnerOpen = $state(getWindowState('backburner', false));
 
   $effect(() => { setWindowState('main', isMinimized); });
   $effect(() => { setWindowState('blog', blogMinimized); });
   $effect(() => { setWindowState('photos', photosMinimized); });
+  $effect(() => { setWindowState('sideProjects', sideProjectsOpen); });
   $effect(() => { setWindowState('otherProjects', otherProjectsOpen); });
   $effect(() => { setWindowState('backburner', backburnerOpen); });
 
@@ -125,7 +128,7 @@
     {
       title: "ShiftRobin",
       description: "SMS shift-fill dispatch",
-      subtitle: "the 3 AM shift-fill problem, solved in 3 texts",
+      subtitle: "say yes to more work",
       icon: Bird,
       status: "alpha",
       color: "bg-orange-500",
@@ -143,14 +146,14 @@
       link: "https://www.hunky.dev",
     },
     {
-      title: "mardicamp",
-      description: "it'll change your life",
-      subtitle: "come to mardi gras with your weird twitter friends",
-      icon: VenetianMask,
-      color: "bg-purple-400",
-      borderColor: "border-purple-600",
-      status: "2027 coming soon",
-      link: "https://mardi.camp",
+      title: "Milkrun",
+      description: "flight sim roguelike persistent universe",
+      subtitle: "experimental category",
+      icon: Plane,
+      color: "bg-blue-400",
+      borderColor: "border-blue-600",
+      status: "indev",
+      link: "#",
     },
   ].map(obj => ({
     ...obj,
@@ -158,17 +161,7 @@
     borderColor: obj.borderColor || 'border-green-600',
   }));
 
-  const otherProjects = [
-    {
-      title: "frike",
-      description: "open source indoor cycling",
-      subtitle: "free bike. your trainer, your rules.",
-      icon: Bike,
-      status: "mostly blog posts",
-      color: "bg-sky-400",
-      borderColor: "border-sky-600",
-      // link: "https://frike.me",
-    },
+  const sideProjects = [
     {
       title: "office hours dot lol",
       description: "illegible tpot meetup directory",
@@ -178,20 +171,25 @@
       link: "https://officehours.lol",
     },
     {
-      title: "Tickbox",
-      description: "compliance/adherence thing for weight loss",
-      subtitle: "people and apps are both too bloated",
-      icon: Beef,
-      status: "bordering on the backburner, so busy",
-      link: "#",
+      title: "mardicamp",
+      description: "it'll change your life",
+      subtitle: "come to mardi gras with your weird twitter friends",
+      icon: VenetianMask,
+      color: "bg-purple-400",
+      borderColor: "border-purple-600",
+      status: "2027 coming soon?",
+      link: "https://mardi.camp",
     },
     {
-      title: "Atmora",
-      description: "ambient audio mixer tui",
-      subtitle: "noise to signal",
-      icon: Headphones,
-      status: "v0.1",
-      link: "https://github.com/whiskeytuesday/atmora",
+      title: "frike",
+      description: "open source indoor cycling",
+      subtitle: "free bike. your trainer, your rules",
+      icon: Bike,
+      status: "mostly blog posts",
+      color: "bg-sky-400",
+      borderColor: "border-sky-600",
+      link: "#",
+      // real link: "https://frike.me",
     },
     {
       title: "The Lifestyle Computer Company",
@@ -210,6 +208,29 @@
       icon: MapleLeafIcon,
       status: "just released",
       link: "https://canigo.ca",
+    },
+  ].map(obj => ({
+    ...obj,
+    color: obj.color || 'bg-green-400',
+    borderColor: obj.borderColor || 'border-green-600',
+  }));
+
+  const otherProjects = [
+    {
+      title: "Tickbox",
+      description: "compliance/adherence thing for weight loss",
+      subtitle: "people and apps are both too bloated",
+      icon: Beef,
+      status: "bordering on the backburner, so busy",
+      link: "#",
+    },
+    {
+      title: "Atmora",
+      description: "ambient audio mixer tui",
+      subtitle: "noise to signal",
+      icon: Headphones,
+      status: "v0.1",
+      link: "https://github.com/whiskeytuesday/atmora",
     },
   ].map(obj => ({
     ...obj,
@@ -277,7 +298,7 @@
   ];
 
   const miscItems = [
-    "I'm a pretty big airplane and flightsim nerd, I don't think I have any relevant links though",
+    "I'm a huge airplane nerd who should really finish his pilot's license one of these years",
     "I have a lot of vintage computers in various states of repair",
     "I have a lot of electronics projects in various states of completion",
     "I'm sure I'm forgetting some other things that should be on here",
@@ -499,6 +520,47 @@
                 </div>
             {/each}
           </div>
+        </section>
+
+        <section>
+          <button
+            onclick={() => sideProjectsOpen = !sideProjectsOpen}
+            class="text-xl font-bold text-stone-800 mb-4 flex items-center cursor-pointer hover:text-stone-600"
+          >
+            {#if sideProjectsOpen}
+              <ChevronDown size={20} class="mr-1" />
+            {:else}
+              <ChevronRight size={20} class="mr-1" />
+            {/if}
+            side projects
+          </button>
+          {#if sideProjectsOpen}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {#each sideProjects as project}
+                  <div class="bg-stone-100 border-2 border-stone-400 p-4 hover:bg-stone-50 transition-colors">
+                    <a href={project.link !== '#' ? project.link : undefined} target="_blank" rel="noopener noreferrer" class="block">
+                      <div class="bg-stone-200 border-b border-stone-300 -mx-4 -mt-4 mb-3 px-3 py-1 flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                          <div class="w-2 h-2 {project.color} border {project.borderColor}"></div>
+                          <span class="text-xs text-stone-600">{project.status}</span>
+                        </div>
+                        {#if project.link !== '#'}
+                          <ExternalLink size={12} class="text-stone-500" />
+                        {/if}
+                      </div>
+                      <div class="flex items-start space-x-3">
+                        <project.icon size={20} class="text-stone-600 mt-1 flex-shrink-0" />
+                        <div>
+                          <h3 class="font-bold text-stone-800">{project.title}</h3>
+                          <p class="text-sm text-stone-600 mb-1">{project.description}</p>
+                          <p class="text-xs text-stone-500 italic">{project.subtitle}</p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+              {/each}
+            </div>
+          {/if}
         </section>
 
         <section>
