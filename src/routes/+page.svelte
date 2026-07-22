@@ -301,6 +301,7 @@
     "I'm a huge airplane nerd who should really finish his pilot's license one of these years",
     "I have a lot of vintage computers in various states of repair",
     "I have a lot of electronics projects in various states of completion",
+    "film school graduate (2013)",
     "I'm sure I'm forgetting some other things that should be on here",
   ];
 </script>
