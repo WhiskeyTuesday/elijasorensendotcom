@@ -36,7 +36,7 @@
 		"marked": "^17.0.4"
 	},
 	"engines": {
-		"node": ">=22.23.4 <23"
+		"node": ">=24.22.1 <25"
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",

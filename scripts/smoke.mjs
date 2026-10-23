@@ -32,7 +32,7 @@ globalThis.fetch = async (input, options) => {
 
 const functionDir = '.vercel/output/functions/![-]/catchall.func';
 const config = JSON.parse(await readFile(`${functionDir}/.vc-config.json`, 'utf8'));
-assert.equal(config.runtime, 'nodejs22.x');
+assert.equal(config.runtime, 'nodejs24.x');
 const { default: handler } = await import(pathToFileURL(`${process.cwd()}/${functionDir}/${config.handler}`));
 const call = (path, options) => handler.fetch(new Request(`https://site.test${path}`, options));
 const auth = { authorization: 'Bearer smoke-paste-key', 'content-type': 'text/markdown' };
