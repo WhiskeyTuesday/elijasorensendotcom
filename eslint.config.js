@@ -11,6 +11,15 @@ export default [
   js.configs.recommended,
   ...svelte.configs["flat/recommended"],
   {
+    // Keep the existing rules while upgrading the plugin. The site has no base path,
+    // and changing list identity is separate from this dependency security update.
+    rules: {
+      'svelte/no-navigation-without-resolve': 'off',
+      'svelte/require-each-key': 'off',
+      'no-unused-vars': ['error', { varsIgnorePattern: '^_', argsIgnorePattern: '^_' }]
+    }
+  },
+  {
     languageOptions: {
 	  globals: {
 	    ...globals.browser,

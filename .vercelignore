@@ -1,0 +1,10 @@
+.git
+.agents
+.aws
+.codex
+.claude
+.env*
+secrets.env
+node_modules
+.svelte-kit
+tmp-ig

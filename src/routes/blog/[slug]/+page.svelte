@@ -63,6 +63,8 @@
 			prose-a:text-stone-700 prose-a:underline hover:prose-a:text-stone-900 dark:prose-a:text-stone-200 dark:hover:prose-a:text-stone-50
 			prose-code:text-stone-700 prose-code:bg-stone-200 prose-code:px-1 prose-code:rounded dark:prose-code:text-stone-200 dark:prose-code:bg-stone-700
 			prose-pre:bg-stone-200 prose-pre:border prose-pre:border-stone-300 dark:prose-pre:bg-stone-800 dark:prose-pre:border-stone-600">
+			<!-- Blog HTML comes only from author-controlled Markdown in this repository. -->
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html data.html}
 		</div>
 	</div>

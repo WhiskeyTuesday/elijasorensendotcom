@@ -1,4 +1,4 @@
-import { gallerySlugs } from '$lib/galleries';
+import { gallerySlugs } from '#lib/galleries.js';
 
 export async function load({ fetch }) {
 	const galleries = await Promise.all(

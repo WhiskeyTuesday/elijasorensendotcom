@@ -6,15 +6,15 @@
     VenetianMask, Bike, Twitter, Linkedin,
     Tickets, Beef, Sparkles, Headphones,
     ChevronRight, ChevronDown, Rss,
-    Bird, Grid2x2Plus, BicepsFlexed,
+    Bird, BicepsFlexed,
     Plane,
   } from 'lucide-svelte';
 
-  import J17Icon from '$lib/icons/J17Icon.svelte';
-  import MapleLeafIcon from '$lib/icons/MapleLeafIcon.svelte';
+  import J17Icon from '#lib/icons/J17Icon.svelte';
+  import MapleLeafIcon from '#lib/icons/MapleLeafIcon.svelte';
 
   import { onMount } from 'svelte';
-  import { getWindowState, setWindowState } from '$lib/windowState';
+  import { getWindowState, setWindowState } from '#lib/windowState.js';
 
   let { data } = $props();
 
@@ -50,7 +50,6 @@
       const data = await res.json();
       const dateString = data.commit?.committer?.date;
       if (dateString) {
-        const date = new Date(dateString);
         lastUpdated = new Date(dateString).toLocaleDateString(undefined, {
           year: 'numeric',
           month: 'short',
