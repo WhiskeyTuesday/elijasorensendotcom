@@ -1,14 +1,18 @@
 <script>
+  import Twitter from '#lib/brands/Twitter.svelte';
+  import Linkedin from '#lib/brands/Linkedin.svelte';
+  import Youtube from '#lib/brands/Youtube.svelte';
+  import Github from '#lib/brands/Github.svelte';
   import {
     Minimize2, X, ExternalLink, Calendar,
     Code, Users, Wrench, Sticker,
-    Youtube, Github, Mail, Building2,
-    VenetianMask, Bike, Twitter, Linkedin,
+    Mail, Building2,
+    VenetianMask, Bike,
     Tickets, Beef, Sparkles, Headphones,
     ChevronRight, ChevronDown, Rss,
     Bird, BicepsFlexed,
     Plane,
-  } from 'lucide-svelte';
+  } from '@lucide/svelte';
 
   import J17Icon from '#lib/icons/J17Icon.svelte';
   import MapleLeafIcon from '#lib/icons/MapleLeafIcon.svelte';

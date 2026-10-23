@@ -16,24 +16,24 @@
 		"@sveltejs/adapter-vercel": "^7.0.1",
 		"@sveltejs/kit": "^3.1.0",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
-		"autoprefixer": "^10.4.20",
 		"eslint": "^10.13.0",
 		"eslint-plugin-svelte": "^3.23.1",
-		"globals": "^15.14.0",
+		"globals": "^17.13.0",
 		"svelte": "^5.57.2",
-		"tailwindcss": "^3.4.19",
+		"tailwindcss": "^4.3.3",
 		"vite": "^8.3.5",
-		"typescript": "^6.0.0",
-		"@opentelemetry/api": "^1.9.0",
-		"@eslint/js": "^10.0.0",
-		"postcss": "^8.0.0"
+		"typescript": "^6.0.3",
+		"@opentelemetry/api": "^1.10.0",
+		"@eslint/js": "^10.0.1",
+		"postcss": "^8.5.31",
+		"@tailwindcss/vite": "^4.3.3"
 	},
 	"dependencies": {
 		"@tailwindcss/container-queries": "^0.1.1",
-		"@tailwindcss/forms": "^0.5.9",
-		"@tailwindcss/typography": "^0.5.15",
-		"lucide-svelte": "^0.469.0",
-		"marked": "^17.0.4"
+		"@tailwindcss/forms": "^0.5.11",
+		"@tailwindcss/typography": "^0.5.20",
+		"marked": "^18.1.1",
+		"@lucide/svelte": "^1.61.0"
 	},
 	"engines": {
 		"node": ">=24.22.1 <25"

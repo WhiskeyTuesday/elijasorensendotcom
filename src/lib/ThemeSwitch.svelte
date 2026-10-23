@@ -1,5 +1,5 @@
 <script>
-	import { Sun, Monitor, Moon } from 'lucide-svelte';
+	import { Sun, Monitor, Moon } from '@lucide/svelte';
 	import { themeState, setTheme } from '#lib/theme.svelte.js';
 
 	const opts = [

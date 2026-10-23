@@ -1,6 +1,13 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Preserve Tailwind 3 border defaults. */
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button { border-color: var(--color-gray-200, currentColor); }
+}
+
+
+
 
 /*
  * Dark mode. The whole site is styled with stone-* utilities used as a

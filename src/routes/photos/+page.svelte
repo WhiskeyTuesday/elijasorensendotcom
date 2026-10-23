@@ -2,7 +2,7 @@
 	import {
 		ChevronLeft, ChevronRight, ArrowLeft, X,
 		Minimize2, Image, Layers
-	} from 'lucide-svelte';
+	} from '@lucide/svelte';
 	import { getWindowState, setWindowState } from '#lib/windowState.js';
 	import { browser } from '$app/env';
 

@@ -1,5 +1,5 @@
 <script>
-	import { ArrowLeft, Calendar, Rss } from 'lucide-svelte';
+	import { ArrowLeft, Calendar, Rss } from '@lucide/svelte';
 
 	let { data } = $props();
 </script>
